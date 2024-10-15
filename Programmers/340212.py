@@ -1,5 +1,6 @@
 def solution(diffs, times, limit):
     answer = 0
+    n = len(diffs)
 
     if
 
