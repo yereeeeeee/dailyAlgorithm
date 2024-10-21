@@ -1,46 +1,47 @@
 import sys
 input = sys.stdin.readline
-from collections import deque
 
-dx = [-1, 0, 1, -1]
+dx = [-1, 0, 1, 0]
 dy = [0, -1, 0, 1]
 
-def bfs(i, j):
-    q = deque([(i, j)])
-    while q:
-        x, y = q.popleft()
+def sol(cnt):
+    global pin_cnt, move_cnt
+
+    # 핀 찾아서 위치 다 저장
+    pins = []
+    for i in range(5):
+        for j in range(9):
+            if arr[i][j] == 'o':
+                pins.append((i, j))
+
+    # 핀 줄어들었으면 답 갱신
+    if len(pins) < pin_cnt:
+        move_cnt = cnt
+        pin_cnt = len(pins)
+
+    # 탐색
+    for x, y in pins:
         for d in range(4):
             nx, ny = x + dx[d], y + dy[d]
-            if 0 <= nx < n and 0 <= ny < m and arr[nx][ny] == 'o':
-                nnx, nny = nx + dx[d], ny + dy[d]
-                if 0 <= nnx < n and 0 <= nny < m and arr[nnx][nny] == '.':
+            nnx, nny = nx + dx[d], ny + dy[d]
+
+            if 0 <= nnx < 5 and 0 <= nny < 9:
+                if arr[nx][ny] == 'o' and arr[nnx][nny] == '.':
                     arr[nx][ny] = '.'
-                    q.append((nx, ny))
-    return 
+                    arr[nnx][nny] = 'o'
+                    arr[x][y] = '.'
+                    sol(cnt+1)
+                    # 원래대로
+                    arr[nx][ny] = 'o'
+                    arr[nnx][nny] = '.'
+                    arr[x][y] = 'o'
 
 TC = int(input())
 n = 101
 for tc in range(TC):
-    # input
-    arr = []
-    if tc == 0:
-        while True:
-            tmp = list(input().strip())
-            if tmp == []: break
-            arr.append(tmp)
-
-    else:
-        i = 0
-        while i < n:
-            tmp = list(input().strip())
-            i += 1
-            if tmp == []: continue
-            arr.append(tmp)
-    n = len(arr)
-    m = len(arr[0])
-
-    # sol
-    for i in range(n):
-        for j in range(m):
-            if arr[i][j] == 'o':
-                bfs(i, j)
+    # 핀 최소 개수, 최소 이동 횟수
+    pin_cnt, move_cnt = 100, 100
+    arr = [list(input().strip()) for _ in range(5)]
+    input()
+    sol(0)
+    print(pin_cnt, move_cnt)
