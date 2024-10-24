@@ -4,26 +4,27 @@ input = sys.stdin.readline
 n = int(input())
 arr = list(map(int, input().split()))
 
-start = 0
-while start < n-1:
-    if arr[start] >= arr[start+1]:
-        start += 1
-    else:
-        break
 
-end = n-1
-while end > 0:
-    if arr[end] <= arr[end-1]:
-        end -= 1
-    else:
-        break
-
+dp = [40001] * (n+1)
+dp[0] = 0
+dp[1] = arr[0]
 answer = 1
-start_port = arr[start]
-end_port = arr[end]
-while start <= end:
-    if start_port < arr[start] <= end_port:
-        answer += 1
-    start += 1
+
+for i in range(1, n):
+    start, end = 0, answer
+    cnt = 0
+
+    while start <= end:
+        mid = (start + end) // 2
+
+        if dp[mid] > arr[i]:
+            end = mid - 1
+        elif dp[mid] < arr[i]:
+            start = mid + 1
+            cnt = mid + 1
+
+    dp[cnt] = arr[i]
+    answer = max(answer, cnt)
 
 print(answer)
+print(dp)
