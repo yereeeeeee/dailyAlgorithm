@@ -387,7 +387,10 @@ poetry.toml
 pyrightconfig.json
 
 # End of https://www.toptal.com/developers/gitignore/api/java,intellij,python,pycharm
+<<<<<<< HEAD
 
+=======
+>>>>>>> 700749f4bcd60b5d0cdc80acb7e33816d76295ef
 # Created by https://www.toptal.com/developers/gitignore/api/pycharm+all
 # Edit at https://www.toptal.com/developers/gitignore?templates=pycharm+all
 
