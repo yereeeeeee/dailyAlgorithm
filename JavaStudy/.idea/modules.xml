@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/1005/1005.iml" filepath="$PROJECT_DIR$/1005/1005.iml" />
       <module fileurl="file://$PROJECT_DIR$/1186/1186.iml" filepath="$PROJECT_DIR$/1186/1186.iml" />
       <module fileurl="file://$PROJECT_DIR$/14550_2/14550_2.iml" filepath="$PROJECT_DIR$/14550_2/14550_2.iml" />
       <module fileurl="file://$PROJECT_DIR$/2024.06/2/2.iml" filepath="$PROJECT_DIR$/2024.06/2/2.iml" />
